@@ -62,14 +62,15 @@
 
         // The timestamp looks like "12:50 PM - Mar 21, 2006", so switch that to
         // something Date can parse
-        var date = new Date(timeStampString.replace('-',''));
+        var parts = timeStampString.split('-');
+        var formattedTimeStampString = parts[1].trim() + ' ' + parts[0].trim();
+        var date = new Date(formattedTimeStampString);
 
         // Subtract from now and convert to days (from milliseconds)
         var daysAgo = (new Date - date) / 1000 / 60 / 60 / 24;
         var daysAgoInt = Math.floor(daysAgo);
         var counterDiv = document.getElementById('counter');
-        // temporarily turn this off until I fix the JS on safari
-        // counterDiv.textContent = daysAgoInt;
+        counterDiv.textContent = daysAgoInt;
       });
     </script>
   </body>
