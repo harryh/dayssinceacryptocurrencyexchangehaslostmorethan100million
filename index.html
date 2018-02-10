@@ -25,14 +25,16 @@
     </div>
     <script>
       // --- Config ---
-      // Update this tweet id whenever a crypto exchange looses $100+ million
-      var latestTweetId = '962149781400305664';
-
-      // Move old tweet ids here to show up in the archive
-      var archiveTweetIds = [
-        '957514764011298816' // Patio11's original tweet
+      // add tweet ids to this tweet id whenever a crypto exchange looses $100+ million
+      // list should be in reverse chronological order
+      var tweetIds = [
+        '962149781400305664',
+        '957514764011298816'
       ];
-      // -------------
+      // --------------
+
+      var latestTweetId = tweetIds[0];
+      var archiveTweetIds = tweetIds.slice(1);
 
       // Fill in the archive tweets
       var archiveTweetsDiv = document.getElementById('archiveTweets');
