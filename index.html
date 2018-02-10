@@ -49,6 +49,9 @@
 
       // Use twitter's widget js api to make a tweet widget out of the latest tweet id
       var latest = twttr.widgets.createTweet(latestTweetId, document.getElementById('latestTweet'), {});
+
+      // TODO: really it would be better to get a timestamp by pulling the right bits out of the tweet id
+      //       rather than digging through the iframe
       latest.then(function(tweetIFrame) {
 
         // Dig through the iframe dom twitter gives us to find the tweet's timestamp
