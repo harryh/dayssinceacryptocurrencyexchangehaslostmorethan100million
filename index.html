@@ -3,30 +3,63 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Days Since A Cryptocurrency Exchange Has Lost More Than $100 Million</title>
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   </head>
   <body>
     <div style="text-align:center;font-size:50px">
       Days Since A Cryptocurrency Exchange Has Lost More Than $100 Million:
     </div>
     <div style="text-align:center;font-size:100px">
-      0
-      <!-- TODO: js this up so it increments every day based on the timestamp of the tweet below -->
+      <span id='counter'>0</span>
     </div>
-    <div>
-      <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">so a bunch of Nano coin owners (formerly RaiBlocks / XRB) stored their coins over at BitGrail exchange, and just lost ~17 million XRB due to a &quot;hack.&quot;  This is worth between $175 - $200 million.<br><br>Nano statement:<a href="https://t.co/puqZkeeHx1">https://t.co/puqZkeeHx1</a><br><br>Exchange: <a href="https://t.co/aakD6pKTv6">https://t.co/aakD6pKTv6</a></p>&mdash; Tim Swanson (@ofnumbers) <a href="https://twitter.com/ofnumbers/status/962149781400305664?ref_src=twsrc%5Etfw">February 10, 2018</a></blockquote>
-    </div>
-    <div style="margin-top:25px;font-size:20px"> 
+    <div id='latestTweet'></div>
+    <div style="margin-top:25px;font-size:20px">
       Archive:
     </div>
-    <div>
-      <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Somebody please reset &quot;Days since a cryptocurrency exchange has lost over $100 million&quot;: <a href="https://t.co/8gpTIUWJaF">https://t.co/8gpTIUWJaF</a> <br><br>English reporting: <a href="https://t.co/VyICYPDPcS">https://t.co/VyICYPDPcS</a></p>&mdash; Patrick McKenzie (@patio11) <a href="https://twitter.com/patio11/status/957514764011298816?ref_src=twsrc%5Etfw">January 28, 2018</a></blockquote>
-    </div>
+    <div id='archiveTweets'></div>
     <div style="margin-top:25px">
       Credit to <a href="https://twitter.com/patio11">Patrick McKenzie</a> for the inspiration.
     </div>
     <div style="margin-top:25px">
       Submit pull requests <a href="https://github.com/harryh/dayssinceacryptocurrencyexchangehaslostmorethan100million">here</a>
     </div>
+    <script>
+      // --- Config ---
+      // Update this tweet id whenever a crypto exchange looses $100+ million
+      var latestTweetId = '962149781400305664';
+
+      // Move old tweet ids here to show up in the archive
+      var archiveTweetIds = [
+        '957514764011298816' // Patio11's original tweet
+      ];
+      // -------------
+
+      // Fill in the archive tweets
+      var archiveTweetsDiv = document.getElementById('archiveTweets');
+      archiveTweets = archiveTweetIds.forEach(function(archiveTweetId) {
+        var tweetDiv = document.createElement('div');
+        archiveTweetsDiv.appendChild(tweetDiv);
+        twttr.widgets.createTweet(archiveTweetId, tweetDiv, {});
+      });
+
+      // Use twitter's widget js api to make a tweet widget out of the latest tweet id
+      var latest = twttr.widgets.createTweet(latestTweetId, document.getElementById('latestTweet'), {});
+      latest.then(function(tweetIFrame) {
+
+        // Dig through the iframe dom twitter gives us to find the tweet's timestamp
+        var embeddedElement = tweetIFrame.contentWindow.document.getElementsByClassName('EmbeddedTweet')[0];
+        var timeStampString = embeddedElement.getAttribute('data-dt-explicit-timestamp');
+
+        // The timestamp looks like "12:50 PM - Mar 21, 2006", so switch that to
+        // something Date can parse
+        var date = new Date(timeStampString.replace('-',''));
+
+        // Subtract from now and convert to days (from milliseconds)
+        var daysAgo = (new Date - date) / 1000 / 60 / 60 / 24;
+        var daysAgoInt = Math.floor(daysAgo);
+        var counterDiv = document.getElementById('counter');
+        counterDiv.textContent = daysAgoInt;
+      });
+    </script>
   </body>
 </html>
