@@ -4,7 +4,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Days Since A Cryptocurrency Exchange Has Lost More Than $100 Million</title>
     <script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    <!-- TODO: find a collection of number favicons and dynamically serve one based on the count -->
+    <!-- Dynamically replace this. -->
+    <link rel="shortcut icon" href="./images/unknown.ico" />
   </head>
   <body>
     <div style="text-align:center;font-size:50px">
@@ -27,7 +28,7 @@
     </div>
     <script>
       // --- Config ---
-      // add tweet ids to this tweet id whenever a crypto exchange looses $100+ million
+      // add tweet ids to this tweet id whenever a crypto exchange loses $100+ million
       // list should be in reverse chronological order
       var tweetIds = [
         '962149781400305664',
@@ -71,6 +72,14 @@
         var daysAgoInt = Math.floor(daysAgo);
         var counterDiv = document.getElementById('counter');
         counterDiv.textContent = daysAgoInt;
+
+        // dynamically replace favicon
+        var iconFilename = (daysAgoInt < 100) ? (daysAgoInt.toString()) : "unknown";
+        iconFilename = "./images/" + iconFilename + ".ico";
+        var favicon = document.querySelector("link[rel*='icon']") || document.createElement('link');
+        favicon.rel = "shortcut icon";
+        favicon.href = iconFilename;
+        document.getElementsByTagName('head')[0].appendChild(favicon);
       });
     </script>
   </body>
