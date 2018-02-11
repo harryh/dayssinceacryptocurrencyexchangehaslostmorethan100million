@@ -74,7 +74,7 @@
         counterDiv.textContent = daysAgoInt;
 
         // dynamically replace favicon
-        var iconFilename = (daysAgoInt < 100) ? (daysAgoInt.toString()) : "unknown";
+        var iconFilename = (daysAgoInt < 100) ? (daysAgoInt.toString()) : "unlikely";
         iconFilename = "./images/" + iconFilename + ".ico";
         var favicon = document.querySelector("link[rel*='icon']") || document.createElement('link');
         favicon.rel = "shortcut icon";
