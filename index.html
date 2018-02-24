@@ -6,27 +6,25 @@
     <script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <!-- Dynamically replace this. -->
     <link rel="shortcut icon" href="./images/unknown.ico" />
+    <link rel="stylesheet" type="text/css" href="./main.css">
   </head>
   <body>
-    <div style="text-align:center;font-size:50px">
+    <div id="intro">
       Days Since A Cryptocurrency Exchange Has Lost More Than $100 Million:
     </div>
-    <div style="text-align:center;font-size:100px">
-      <span id='counter'>0</span>
+    <div>
+      <span id="counter">0</span>
     </div>
     <div id='latestTweet'></div>
-    <div style="margin-top:25px;font-size:20px">
-      Archive:
-    </div>
+    <h2>Archive:</h2>
     <div id='archiveTweets'></div>
-    <div style="margin-top:25px">
+    <footer>
       Hacked together one night by <a href="https://twitter.com/harryh">harryh</a>.
-      Inspired by <a href="https://twitter.com/patio11">Patrick McKenzie</a>. He also wrote the dynamic favicon JS.
-      Thanks to <a href="https://github.com/kkuchta">Kevin Kuchta</a> for submitting a pull request with most of the original JS
-    </div>
-    <div style="margin-top:25px">
+      Inspired by <a href="https://twitter.com/patio11">Patrick McKenzie</a>. He also wrote the dynamic favicon JS.<br>
+      Thanks to <a href="https://github.com/kkuchta">Kevin Kuchta</a> for submitting a pull request with most of the original JS.<br>
       Submit pull requests <a href="https://github.com/harryh/dayssinceacryptocurrencyexchangehaslostmorethan100million">here</a>
-    </div>
+    </footer>
+    
     <script>
       // --- Config ---
       // add tweet ids to this tweet id whenever a crypto exchange loses $100+ million
