@@ -1,0 +1,34 @@
+body {
+  font-family: Roboto;
+  text-align: center;
+  padding: 30px 30px 10px 30px;
+}
+
+div {
+  margin-top: 20px;
+  margin-bottom: 20px; 
+}
+
+footer {
+  font-size: 20px;
+  line-height: 25px;
+  margin-top: 40px;
+}
+
+#intro {
+  font-size: 50px;
+}
+
+#counter {
+  font-size: 100px;
+}
+
+#latestTweet {
+  width: 40%;
+  margin: 50px auto;
+}
+
+#archiveTweets {
+  width: 40%;
+  margin: 0 auto;
+}
