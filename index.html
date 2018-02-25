@@ -63,14 +63,14 @@
       document.getElementsByTagName('head')[0].appendChild(favicon);
 
       // Use twitter's widget js api to make a tweet widget out of the latest tweet id
-      var latest = twttr.widgets.createTweet(latestTweetId, document.getElementById('latestTweet'), {});
+      var latest = twttr.widgets.createTweet(latestTweetId, document.getElementById('latestTweet'), {align: 'center'});
 
       // Fill in the archive tweets
       var archiveTweetsDiv = document.getElementById('archiveTweets');
       archiveTweets = archiveTweetIds.forEach(function(archiveTweetId) {
         var tweetDiv = document.createElement('div');
         archiveTweetsDiv.appendChild(tweetDiv);
-        twttr.widgets.createTweet(archiveTweetId, tweetDiv, {});
+        twttr.widgets.createTweet(archiveTweetId, tweetDiv, {align: 'center'});
       });
     </script>
   </body>
