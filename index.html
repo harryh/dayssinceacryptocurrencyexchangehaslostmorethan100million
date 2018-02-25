@@ -43,14 +43,6 @@
       var latestTweetId = tweetIds[0];
       var archiveTweetIds = tweetIds.slice(1);
 
-      // Fill in the archive tweets
-      var archiveTweetsDiv = document.getElementById('archiveTweets');
-      archiveTweets = archiveTweetIds.forEach(function(archiveTweetId) {
-        var tweetDiv = document.createElement('div');
-        archiveTweetsDiv.appendChild(tweetDiv);
-        twttr.widgets.createTweet(archiveTweetId, tweetDiv, {});
-      });
-
       // Use latest tweet id to get the timestamp
       var date = new Date(Math.floor(latestTweetId / 4194304) + 1288834974657);
 
@@ -60,20 +52,23 @@
       var counterDiv = document.getElementById('counter');
       counterDiv.textContent = daysAgoInt;
 
+      // dynamically replace favicon
+      var iconFilename = (daysAgoInt < 100) ? (daysAgoInt.toString()) : "unlikely";
+      iconFilename = "./images/" + iconFilename + ".ico";
+      var favicon = document.querySelector("link[rel*='icon']") || document.createElement('link');
+      favicon.rel = "shortcut icon";
+      favicon.href = iconFilename;
+      document.getElementsByTagName('head')[0].appendChild(favicon);
+
       // Use twitter's widget js api to make a tweet widget out of the latest tweet id
       var latest = twttr.widgets.createTweet(latestTweetId, document.getElementById('latestTweet'), {});
 
-      // TODO: really it would be better to get a timestamp by pulling the right bits out of the tweet id
-      //       rather than digging through the iframe
-      latest.then(function(tweetIFrame) {
-        
-        // dynamically replace favicon
-        var iconFilename = (daysAgoInt < 100) ? (daysAgoInt.toString()) : "unlikely";
-        iconFilename = "./images/" + iconFilename + ".ico";
-        var favicon = document.querySelector("link[rel*='icon']") || document.createElement('link');
-        favicon.rel = "shortcut icon";
-        favicon.href = iconFilename;
-        document.getElementsByTagName('head')[0].appendChild(favicon);
+      // Fill in the archive tweets
+      var archiveTweetsDiv = document.getElementById('archiveTweets');
+      archiveTweets = archiveTweetIds.forEach(function(archiveTweetId) {
+        var tweetDiv = document.createElement('div');
+        archiveTweetsDiv.appendChild(tweetDiv);
+        twttr.widgets.createTweet(archiveTweetId, tweetDiv, {});
       });
     </script>
   </body>
