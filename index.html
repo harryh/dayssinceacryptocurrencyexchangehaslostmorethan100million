@@ -52,7 +52,7 @@
       });
 
       // Use latest tweet id to get the timestamp
-      var date = new Date(Math.floor(String(Math.floor(latestTweetId / 4194304))) + 1288834974657);
+      var date = new Date(Math.floor(latestTweetId / 4194304) + 1288834974657);
 
       // Subtract from now and convert to days (from milliseconds)
       var daysAgo = (new Date - date) / 1000 / 60 / 60 / 24;
